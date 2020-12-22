@@ -11,14 +11,10 @@ export const query = graphql`
       data {
         body {
           ... on PrismicPostBodyText {
-            id
             slice_type
-            slice_label
             primary {
               text {
                 html
-                text
-                raw
               }
             }
           }
