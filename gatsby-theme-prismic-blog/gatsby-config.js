@@ -1,4 +1,14 @@
 module.exports = (themeOptions) => ({
+  siteMetadata: {
+    siteTitle: 'Gatsby Theme Prismic Blog',
+    siteTitleAlt: '',
+    siteDescription: '',
+    siteLanguage: '',
+    author: '',
+    contact: '',
+    siteUrl: 'https://github.com/desruc/gatsby-theme-prismic-blog',
+    siteImage: ''
+  },
   plugins: [
     'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',

@@ -15,7 +15,7 @@ const BlogPost = ({ data: { prismicPost } }) => {
   } = prismicPost;
 
   return (
-    <Layout>
+    <Layout title={post_title.text}>
       <Container>
         <Hero image={fluid}>
           <h1>{post_title.text}</h1>
