@@ -37,6 +37,21 @@ module.exports = (themeOptions) => ({
           post: require('./src/schemas/post.json')
         }
       }
+    },
+    {
+      resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
+      options: {
+        // Fields to index
+        fields: ['post_title', 'post_description', 'header_image'],
+        // How to resolve each field`s value for a supported node type
+        resolvers: {
+          PrismicPost: {
+            post_title: (node) => node.data.post_title.text,
+            post_description: (node) => node.data.post_description.text,
+            header_image: (node) => node.data.header_image.url
+          }
+        }
+      }
     }
   ]
 });
