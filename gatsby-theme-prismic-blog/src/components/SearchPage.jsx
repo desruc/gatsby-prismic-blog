@@ -1,6 +1,45 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import qs from 'query-string';
 import { Index } from 'elasticlunr';
+import { Link } from 'gatsby';
+
+import Layout from './Layout';
+import Container from './Container';
+
+const List = styled.ul`
+  list-style: none;
+  margin: 32px 0px;
+  padding: 0;
+`;
+
+const ResultWrap = styled.div`
+  display: flex;
+`;
+
+const ResultImage = styled.div`
+  background-size: cover;
+  background-position: center center;
+  background-image: ${({ src }) => `url(${src})`};
+  width: 300px;
+  height: 200px;
+`;
+
+const ResultContent = styled.div`
+  flex: 1;
+  padding: 8px 16px 8px 32px;
+`;
+
+const StyledLink = styled(Link)`
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: ${({ theme: { colors } }) => colors.heading};
+  transition: color 0.2s ease-in-out;
+  text-decoration: none;
+  :hover {
+    color: ${({ theme: { colors } }) => colors.primary};
+  }
+`;
 
 const SearchPage = ({ data: { siteSearchIndex }, location: { search } }) => {
   const [results, setResults] = useState([]);
@@ -21,17 +60,28 @@ const SearchPage = ({ data: { siteSearchIndex }, location: { search } }) => {
   }, [siteSearchIndex, search]);
 
   return (
-    <div>
-      <ul>
-        {results.map((post) => (
-          <li>
-            <p>{post.post_title}</p>
-            <p>{post.post_description}</p>
-            <img src={post.header_image} alt="post" />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Layout>
+      <Container>
+        <List>
+          {results.map((post) => (
+            <li>
+              <ResultWrap>
+                <Link to={`/posts/${post.uid}`} title="View post">
+                  <ResultImage src={post.header_image} alt="post" />
+                </Link>
+                <ResultContent>
+                  <StyledLink to={`/posts/${post.uid}`}>
+                    {post.post_title}
+                  </StyledLink>
+                  <p>{post.post_description}</p>
+                  <Link to={`/posts/${post.uid}`}>Read more</Link>
+                </ResultContent>
+              </ResultWrap>
+            </li>
+          ))}
+        </List>
+      </Container>
+    </Layout>
   );
 };
 

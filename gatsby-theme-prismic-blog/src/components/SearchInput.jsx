@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { navigate } from '@reach/router';
 
 const SearchIcon = () => (
   <svg
@@ -67,6 +68,7 @@ const Button = styled.button(
   color: ${colors.heading};
   border: none;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
   :focus {
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -84,6 +86,11 @@ const SearchInput = () => {
     setSearch(value);
   };
 
+  const handleSearch = () => {
+    setSearch('');
+    navigate(`/search?q=${search}`);
+  };
+
   return (
     <Wrap>
       <Input
@@ -92,7 +99,7 @@ const SearchInput = () => {
         onChange={handleChange}
         placeholder="Search posts..."
       />
-      <Button title="Search">
+      <Button title="Search" onClick={handleSearch}>
         <SearchIcon />
       </Button>
     </Wrap>
