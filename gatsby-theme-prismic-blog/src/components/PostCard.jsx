@@ -50,7 +50,7 @@ const PostCard = ({ post }) => {
   });
 
   return (
-    <StyledLink to={`/posts/${uid}`}>
+    <StyledLink to={`/post/${uid}`}>
       <Card
         style={animatedStyle}
         onMouseEnter={onMouseEnter}

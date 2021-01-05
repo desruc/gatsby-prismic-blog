@@ -66,15 +66,15 @@ const SearchPage = ({ data: { siteSearchIndex }, location: { search } }) => {
           {results.map((post) => (
             <li>
               <ResultWrap>
-                <Link to={`/posts/${post.uid}`} title="View post">
+                <Link to={`/post/${post.uid}`} title="View post">
                   <ResultImage src={post.header_image} alt="post" />
                 </Link>
                 <ResultContent>
-                  <StyledLink to={`/posts/${post.uid}`}>
+                  <StyledLink to={`/post/${post.uid}`}>
                     {post.post_title}
                   </StyledLink>
                   <p>{post.post_description}</p>
-                  <Link to={`/posts/${post.uid}`}>Read more</Link>
+                  <Link to={`/post/${post.uid}`}>Read more</Link>
                 </ResultContent>
               </ResultWrap>
             </li>
